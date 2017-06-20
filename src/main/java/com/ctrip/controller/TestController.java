@@ -2,7 +2,7 @@ package com.ctrip.controller;
 
 import com.ctrip.service.IBusDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +20,9 @@ public class TestController {
         this.busDataService = busDataService;
     }
 
-    @RequestMapping("/getAllLine/{site}")
+    @RequestMapping("/getAllLine")
     @ResponseBody
-    String getAllLine(@PathVariable("site") String site) {
+    String getAllLine(ModelMap modelMap, String site) {
         return busDataService.getAllLine(site);
     }
 }
