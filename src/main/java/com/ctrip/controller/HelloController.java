@@ -1,5 +1,6 @@
 package com.ctrip.controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +14,14 @@ import java.util.Map;
 @RestController
 public class HelloController {
     @RequestMapping("/")
-    @ResponseBody
     Map home() {
         Map<String, String> result= new HashMap<>();
-        result.put("name","Jack");
+        result.put("msg","welcome to spring boot");
         return result;
+    }
+
+    @RequestMapping("/name/{name}")
+    String echo(@PathVariable("name") String name) {
+        return "your name is " + name;
     }
 }
