@@ -22,7 +22,7 @@ public class TestController {
 
     @RequestMapping("/getAllLine")
     @ResponseBody
-    String getAllLine(ModelMap modelMap, String site) {
+    public String getAllLine(ModelMap modelMap, String site) {
         return busDataService.getAllLine(site);
     }
 }
