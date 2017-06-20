@@ -55,4 +55,8 @@ public class MarkdownController {
         }
         return html;
     }
+    @RequestMapping("/forward")
+    public String forward(){
+        return "name/sda";
+    }
 }
