@@ -3,6 +3,7 @@ package com.ctrip.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Map;
 @Controller
 public class HelloController {
     @RequestMapping("/")
+    @ResponseBody
     Map home() {
         Map<String, String> result= new HashMap<>();
         result.put("msg","welcome to spring boot");
@@ -20,6 +22,7 @@ public class HelloController {
     }
 
     @RequestMapping("/name/{name}")
+    @ResponseBody
     String echo(@PathVariable("name") String name) {
         return "your name is " + name;
     }
