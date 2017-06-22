@@ -8,12 +8,19 @@ server:
 # 开发配置
 spring:
   profiles: development
+  redis:
+    host: localhost
+    port: 6379
+    pool:
+      max-active: 10
+      max-idle: 8
+      min-idle: 1
+      max-wait: 10000
 server:
   address: 127.0.0.1
   port: 8080
 logging:
   path: d:/logs
-
 
 ---
 # 生产配置

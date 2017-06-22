@@ -1,9 +1,12 @@
 package com.ctrip.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +16,14 @@ import java.util.Map;
  */
 @Controller
 public class HelloController {
+
+    private final JedisPool jedisPool;
+
+    @Autowired
+    public HelloController(JedisPool jedisPool) {
+        this.jedisPool = jedisPool;
+    }
+
     @RequestMapping("/")
     @ResponseBody
     Map home() {
@@ -21,7 +32,14 @@ public class HelloController {
         return result;
     }
 
-    @RequestMapping("/name/{name}")
+    @RequestMapping("/name/find")
+    @ResponseBody
+    String findName() {
+        Jedis jedis = jedisPool.getResource();
+        return jedis.get("name");
+    }
+
+    @RequestMapping("/name/{name}/echo")
     @ResponseBody
     String echo(@PathVariable("name") String name) {
         return "your name is " + name;
